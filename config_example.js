@@ -1,0 +1,1 @@
+export const API_KEY = INGRESA_ACA_TU_KEY
