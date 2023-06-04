@@ -25,13 +25,61 @@ window.addEventListener('load', ()=>{
         
         
         //ubicacion por ciudad
-        const url=`https://api.openweathermap.org/data/2.5/weather?q=Chile&appid={API}`
-            //console.log(url)
+        //para ocuparlo solo debes ocupar la const url de abajo
+        //const url, ingresa tu ciudad y api key=`https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}`
+        //console.log(url)
 
         fetch(url)
             .then(response =>{ return response.json()})
             .then (data =>{
-                console.log(data)
+                let temp = Math.round(data.main.temp)
+                temperaturaValor.textContent = `${temp}°C`
+                let desc = data.weather[0].description
+                temperaturaDescripcion.textContent = desc.toUpperCase()
+
+
+                ubicacion.textContent = data.name
+                
+                vientoVelocidad.textContent = `${data.wind.speed} m/s`
+                //console.log(data.wind.speed)
+
+
+                //Iconos estaticos
+                console.log(data.weather[0].main)
+                switch(data.weather[0].main){
+                    case 'Thunderstorm':
+                        iconoAnimado.src='animated/thunder.svg'
+                        console.log('TORMENTA');
+                        break;
+                      case 'Drizzle':
+                        iconoAnimado.src='animated/rainy-2.svg'
+                        console.log('LLOVIZNA');
+                        break;
+                      case 'Rain':
+                        iconoAnimado.src='animated/rainy-7.svg'
+                        console.log('LLUVIA');
+                        break;
+                      case 'Snow':
+                        iconoAnimado.src='animated/snowy-6.svg'
+                          console.log('NIEVE');
+                        break;                        
+                      case 'Clear':
+                          iconoAnimado.src='animated/day.svg'
+                          console.log('LIMPIO');
+                        break;
+                      case 'Atmosphere':
+                        iconoAnimado.src='animated/weather.svg'
+                          console.log('ATMOSFERA');
+                          break;  
+                      case 'Clouds':
+                          iconoAnimado.src='animated/cloudy-day-1.svg'
+                          console.log('NUBES');
+                          break;  
+                      default:
+                        iconoAnimado.src='animated/cloudy-day-1.svg'
+                        console.log('por defecto');
+
+                }
             })
             .catch(error=>{
                 console.log(error)
