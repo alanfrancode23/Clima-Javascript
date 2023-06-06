@@ -21,12 +21,12 @@ window.addEventListener('load', ()=>{
 
 
         //ubicacion actual   
-        //const url=`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}`
+        //const url=`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&lang=es&units=metric`
         
         
         //ubicacion por ciudad
-        //para ocuparlo solo debes ocupar la const url de abajo
-        //const url, ingresa tu ciudad y api key=`https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}`
+        //para ocupar la url ingresa tu ciudad y api key 
+        const url =`https://api.openweathermap.org/data/2.5/weather?q={CIUDAD}&appid={API_KEY}&lang=es&units=metric`
         //console.log(url)
 
         fetch(url)
@@ -36,12 +36,13 @@ window.addEventListener('load', ()=>{
                 temperaturaValor.textContent = `${temp}°C`
                 let desc = data.weather[0].description
                 temperaturaDescripcion.textContent = desc.toUpperCase()
+                console.log(data);
 
 
                 ubicacion.textContent = data.name
                 
                 vientoVelocidad.textContent = `${data.wind.speed} m/s`
-                //console.log(data.wind.speed)
+                console.log(data.wind.speed)
 
 
                 //Iconos estaticos
